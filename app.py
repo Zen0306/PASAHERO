@@ -11,9 +11,14 @@ import time
 import database as db
 import plotly.express as px
 import plotly.graph_objects as go
+import base64
+
+with open("logo.png", "rb") as f:
+    logo_data = f.read()
+logo_base64 = base64.b64encode(logo_data).decode()
 
 st.set_page_config(
-    page_title="JeepTrack PH",
+    page_title="PASAHERO",
     page_icon="🚐",
     layout="wide",
     initial_sidebar_state="expanded"
@@ -62,24 +67,25 @@ def calculate_eta(driver_location, commuter_location):
 def role_selection_page():
     st.markdown("""
         <style>
-        .main-header {
-            text-align: center;
-            color: #FF6B35;
-            font-size: 3rem;
-            font-weight: bold;
-            margin-bottom: 1rem;
+        .logo {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 500px;       
+            margin-bottom: 0.5rem;
         }
         .sub-header {
             text-align: center;
             color: #004E89;
             font-size: 1.5rem;
+            font-weight: bold;
             margin-bottom: 2rem;
         }
         </style>
     """, unsafe_allow_html=True)
     
-    st.markdown('<p class="main-header">🚐 JeepTrack PH</p>', unsafe_allow_html=True)
-    st.markdown('<p class="sub-header">Real-time Jeepney Tracking System</p>', unsafe_allow_html=True)
+    st.markdown(f'<img src="data:image/png;base64,{logo_base64}" class="logo">', unsafe_allow_html=True)
+    st.markdown('<p class="sub-header">Plan Your Jeepney Trips Faster and Safer!</p>', unsafe_allow_html=True)
     
     st.markdown("---")
     
